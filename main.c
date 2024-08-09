@@ -5,26 +5,25 @@ for fahr = 0, 20, ..., 300; floating-point version */
 int main()
 {
     int c;
-    int spaces = 0;
-    int tabs = 0;
-    int newlines = 0;
+    int previousBlank = 0; // This will track if the last character was a blank
+
     while ((c = getchar()) != EOF)
     {
         if (c == ' ')
         {
-            ++spaces;
+            if (!previousBlank)
+            { // If the previous character wasn't a blank, print this one
+                putchar(c);
+                previousBlank = 1; // Now the previous character is a blank
+            }
+            // If the previous character was a blank, do nothing (skip this blank)
         }
-        else if (c == '\t')
+        else
         {
-            ++tabs;
-        }
-        else if (c == '\n')
-        {
-            ++newlines;
+            putchar(c);        // Print the current character
+            previousBlank = 0; // Reset, because the current character is not a blank
         }
     }
 
-    printf("Spaces: %d\n", spaces);
-    printf("Tabs: %d\n", tabs);
-    printf("Newlines: %d\n", newlines);
+    return 0;
 }
