@@ -4,9 +4,27 @@ for fahr = 0, 20, ..., 300; floating-point version */
 
 int main()
 {
-    double nc;
-    for (nc = 0; getchar() != EOF; ++nc)
+    int c;
+    int spaces = 0;
+    int tabs = 0;
+    int newlines = 0;
+    while ((c = getchar()) != EOF)
     {
-        printf("%.0f\n", nc);
+        if (c == ' ')
+        {
+            ++spaces;
+        }
+        else if (c == '\t')
+        {
+            ++tabs;
+        }
+        else if (c == '\n')
+        {
+            ++newlines;
+        }
     }
+
+    printf("Spaces: %d\n", spaces);
+    printf("Tabs: %d\n", tabs);
+    printf("Newlines: %d\n", newlines);
 }
